@@ -1,606 +1,683 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barb's Pizzaria – Cardápio Digital</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --red: #e07b10;
-      --red-dark: #b35e00;
-      --red-light: #f5a020;
-      --gold: #f5c842;
-      --dark: #111111;
-      --dark2: #1e1e1e;
-      --white: #fff;
-      --gray: #f6f4f1;
-      --text: #1a1a1a;
-      --border: #e8ddd0;
-    }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--text); min-height: 100vh; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barb's Pizzaria | Links</title>
+    <meta name="description" content="Barb's Pizzaria em Presidente Epitácio — Cardápio, delivery, avaliações e redes sociais.">
 
-    /* ── HEADER ── */
-    header {
-      background: linear-gradient(180deg, #111111 0%, #1e1e1e 100%);
-      color: white;
-      padding: 18px 16px 0;
-      text-align: center;
-      position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.6);
-    }
-    .logo-area { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 10px; }
-    .logo-area img { width: 68px; height: 68px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
-    .header-info h1 { font-size: 1.75rem; color: var(--gold); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .header-info .tagline { font-size: 0.78rem; color: #e0c0c0; margin-top: 2px; letter-spacing: 0.5px; }
-    .info-bar {
-      display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
-      font-size: 0.76rem; color: #c8b89a; padding: 8px 0 4px; border-top: 1px solid #333;
-    }
-    .info-bar span { display: flex; align-items: center; gap: 4px; }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
-    /* ── NAV TABS ── */
-    nav {
-      display: flex; gap: 0; overflow-x: auto; background: #0d0d0d;
-      scrollbar-width: none; border-top: 1px solid #2a2a2a;
-    }
-    nav::-webkit-scrollbar { display: none; }
-    nav button {
-      padding: 11px 18px; background: transparent; border: none; color: #c9a0a0;
-      cursor: pointer; font-size: 0.84rem; white-space: nowrap;
-      border-bottom: 3px solid transparent; transition: all 0.2s; font-weight: 600;
-    }
-    nav button:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
-    nav button.active { color: var(--gold); border-bottom-color: var(--gold); background: rgba(255,200,0,0.06); }
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    /* ── MAIN ── */
-    main { max-width: 920px; margin: 0 auto; padding: 18px 14px 32px; }
-    .section { display: none; }
-    .section.active { display: block; }
+    <!--
+    =====================================================
+    GOOGLE ANALYTICS — RASTREAMENTO DE CLIQUES
+    Para ativar:
+    1. Crie uma conta no analytics.google.com
+    2. Crie uma propriedade GA4 para o site
+    3. Substitua os dois "SEU-ID-AQUI" pelo seu ID (ex: G-ABC123456)
+    4. Remova as marcações de comentário ao redor do bloco
+    =====================================================
+    -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=SEU-ID-AQUI"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'SEU-ID-AQUI');
+    </script>
+    -->
 
-    /* ── SECTION TITLE ── */
-    .section-title {
-      font-size: 1.3rem; font-weight: 800; color: var(--red-dark);
-      margin: 18px 0 12px; padding-bottom: 8px;
-      border-bottom: 3px solid var(--red);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .count-badge {
-      font-size: 0.72rem; font-weight: 500; color: #999;
-      background: #f0e8e8; border-radius: 20px; padding: 2px 8px; margin-left: 4px;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ── INFO BOX ── */
-    .info-box {
-      background: linear-gradient(135deg, #7a4500, #c96d00);
-      color: white; border-radius: 12px; padding: 14px 18px; margin-bottom: 18px;
-    }
-    .info-box h3 { font-size: 1rem; margin-bottom: 6px; }
-    .info-box p { font-size: 0.83rem; line-height: 1.7; opacity: 0.95; }
+        body {
+            background-color: #0D0D0D;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* ── SEARCH ── */
-    .search-box { margin-bottom: 14px; }
-    .search-box input {
-      width: 100%; padding: 11px 16px; border: 2px solid var(--border);
-      border-radius: 10px; font-size: 0.95rem; outline: none;
-      background: white; transition: border-color 0.2s;
-    }
-    .search-box input:focus { border-color: var(--red); }
+        /* Efeito de faíscas no fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 10%, rgba(255, 107, 0, 0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 80%, rgba(255, 107, 0, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* ── PIZZA TABLE ── */
-    .pizza-table {
-      width: 100%; border-collapse: collapse; background: white;
-      border-radius: 12px; overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
-    .pizza-table thead tr { background: var(--red); color: white; }
-    .pizza-table th {
-      padding: 11px 10px; text-align: left; font-weight: 700;
-      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4px;
-    }
-    .pizza-table th.c { text-align: center; }
-    .pizza-table th.sabores-col { background: #7b1a10; text-align: center; }
-    .pizza-table tbody tr { border-bottom: 1px solid #f5e8e8; transition: background 0.15s; }
-    .pizza-table tbody tr:hover { background: #fff5f5; }
-    .pizza-table tbody tr:last-child { border-bottom: none; }
-    .pizza-table td { padding: 11px 10px; vertical-align: middle; }
-    .pizza-table td.c { text-align: center; font-weight: 700; font-size: 0.92rem; white-space: nowrap; }
-    .pizza-table td.sabores-td { text-align: center; color: var(--red); font-weight: 700; font-size: 0.82rem; }
-    .pizza-name { font-weight: 700; color: var(--red-dark); font-size: 0.94rem; }
-    .pizza-num { color: #aaa; font-size: 0.78rem; margin-right: 4px; }
-    .pizza-ing { font-size: 0.78rem; color: #777; margin-top: 3px; line-height: 1.45; }
-    tr.hidden { display: none; }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 30px 0 50px;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* ── CARDS GRID (doces) ── */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 13px; }
-    .card {
-      background: white; border-radius: 12px; padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-left: 4px solid var(--red);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-    .card-name { font-weight: 800; color: var(--red-dark); font-size: 0.95rem; margin-bottom: 5px; }
-    .card-ing { font-size: 0.79rem; color: #666; line-height: 1.5; margin-bottom: 11px; }
-    .card-prices { display: flex; gap: 8px; flex-wrap: wrap; }
-    .price-badge {
-      background: #faf0f0; border: 1px solid #e8d0d0; border-radius: 8px;
-      padding: 5px 9px; font-size: 0.8rem; font-weight: 700; text-align: center;
-    }
-    .price-badge span { display: block; font-size: 0.63rem; font-weight: 400; color: #888; text-transform: uppercase; }
-    .price-badge.highlight { background: #fff0f0; border-color: #c0392b; color: var(--red-dark); }
+        /* ── LOGO ── */
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* ── MINI KIDS GRID ── */
-    .kids-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .kids-card {
-      background: white; border-radius: 12px; padding: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-bottom: 3px solid var(--gold);
-      transition: transform 0.15s;
-    }
-    .kids-card:hover { transform: translateY(-2px); }
-    .kids-name { font-weight: 800; color: #1a1a1a; font-size: 0.92rem; margin-bottom: 4px; }
-    .kids-desc { font-size: 0.77rem; color: #666; margin-bottom: 9px; line-height: 1.45; }
-    .kids-price { font-size: 1.1rem; font-weight: 900; color: var(--red); }
-    .kids-de { font-size: 0.75rem; text-decoration: line-through; color: #bbb; margin-left: 5px; }
+        .logo-ring {
+            width: 124px;
+            height: 124px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #FF6B00, #F5A623, #CC4E00);
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.35);
+        }
 
-    /* ── COMBO CARDS ── */
-    .combo-card {
-      background: white; border-radius: 14px; padding: 20px 20px 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 16px;
-      border-top: 5px solid var(--red); position: relative; overflow: hidden;
-    }
-    .combo-card::before {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 120px; height: 120px;
-      background: radial-gradient(circle at top right, rgba(192,57,43,0.07), transparent 70%);
-    }
-    .combo-tag {
-      display: inline-block; background: var(--red); color: white;
-      border-radius: 6px; padding: 3px 10px; font-size: 0.72rem; font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .combo-tag.gold { background: var(--gold); color: #1a0505; }
-    .combo-tag.green { background: #27ae60; }
-    .combo-name { font-size: 1.1rem; font-weight: 800; color: var(--red-dark); margin-bottom: 10px; }
-    .combo-items { list-style: none; margin-bottom: 12px; }
-    .combo-items li { font-size: 0.84rem; color: #444; padding: 3px 0; line-height: 1.5; }
-    .combo-obs {
-      font-size: 0.78rem; color: #888; background: #fdf5f5;
-      border-left: 3px solid var(--red); padding: 8px 12px; border-radius: 0 6px 6px 0;
-      margin-bottom: 12px;
-    }
-    .combo-price-row { display: flex; align-items: center; gap: 14px; }
-    .combo-de { font-size: 0.9rem; text-decoration: line-through; color: #aaa; }
-    .combo-por { font-size: 1.5rem; font-weight: 900; color: var(--red); }
-    .combo-economia {
-      font-size: 0.75rem; background: #e8f5e9; color: #27ae60;
-      border-radius: 6px; padding: 3px 8px; font-weight: 700;
-    }
+        .logo-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+            display: block;
+        }
 
-    /* ── SIMPLE TABLE ── */
-    .simple-table {
-      width: 100%; border-collapse: collapse; background: white;
-      border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      margin-bottom: 24px;
-    }
-    .simple-table thead tr { background: var(--red); }
-    .simple-table th { padding: 10px 14px; color: white; text-align: left; font-size: 0.84rem; }
-    .simple-table th:last-child { text-align: right; }
-    .simple-table td { padding: 10px 14px; border-bottom: 1px solid #f5e8e8; font-size: 0.87rem; }
-    .simple-table tr:last-child td { border-bottom: none; }
-    .simple-table tr:hover td { background: #fff8f8; }
-    .simple-table td:last-child { text-align: right; font-weight: 700; color: var(--red-dark); }
+        /* Placeholder enquanto não tem logo — remova quando subir a logo real */
+        .logo-placeholder {
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            background: #1A1A1A;
+            border: 3px solid #0D0D0D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 46px;
+        }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #111; color: #b8a890;
-      text-align: center; padding: 28px 20px; font-size: 0.79rem; line-height: 1.9;
-      margin-top: 36px;
-    }
-    footer strong { color: var(--gold); }
-    .delivery-badge {
-      display: inline-block; background: var(--red); color: white;
-      padding: 7px 18px; border-radius: 24px; font-size: 0.82rem; font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .aviso-preco {
-      background: #1a1a1a; border: 1px solid #333; border-radius: 10px;
-      padding: 12px 18px; margin: 14px auto; max-width: 580px; text-align: left;
-    }
-    .aviso-preco strong { color: var(--gold); }
+        .brand-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 34px;
+            letter-spacing: 3px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 1;
+        }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 620px) {
-      .logo-area img { width: 52px; height: 52px; }
-      .header-info h1 { font-size: 1.35rem; }
-      .pizza-table th, .pizza-table td { padding: 9px 5px; font-size: 0.8rem; }
-      .pizza-ing { display: none; }
-      main { padding: 12px 10px; }
-    }
-  </style>
+        .brand-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #FF6B00;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ── BADGE DE AVALIAÇÃO ── */
+        .rating-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1A1A1A;
+            border: 1px solid rgba(245, 166, 35, 0.4);
+            border-radius: 40px;
+            padding: 10px 22px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        .rating-stars {
+            color: #F5A623;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .rating-number {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: #F5A623;
+        }
+
+        .rating-sep {
+            color: #444;
+            font-size: 14px;
+        }
+
+        .rating-count {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* ── HERO IMAGE (pizza) ── */
+        .hero-image {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #1A1A1A;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF6B00, transparent);
+            border-radius: 2px;
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: #FF6B00;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* ── BOTÕES DE LINK ── */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 15px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.22s ease;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .link-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .link-btn .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .link-btn .btn-text {
+            flex: 1;
+        }
+
+        .link-btn .btn-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .link-btn .btn-sublabel {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            opacity: 0.65;
+            margin-top: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .link-btn .arrow {
+            font-size: 20px;
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+
+        /* Botão WhatsApp */
+        .btn-whatsapp {
+            background: #111;
+            border-color: rgba(37, 211, 102, 0.5);
+            color: #fff;
+        }
+        .btn-whatsapp .icon { background: rgba(37, 211, 102, 0.12); color: #25D366; }
+        .btn-whatsapp:hover { border-color: #25D366; box-shadow: 0 8px 28px rgba(37, 211, 102, 0.2); }
+
+        /* Botão Cardápio — destaque laranja sólido */
+        .btn-cardapio {
+            background: linear-gradient(135deg, #FF6B00 0%, #CC4E00 100%);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(255, 107, 0, 0.35);
+        }
+        .btn-cardapio .icon { background: rgba(255, 255, 255, 0.18); color: #fff; }
+        .btn-cardapio:hover { box-shadow: 0 8px 28px rgba(255, 107, 0, 0.55); }
+
+        /* Botão iFood */
+        .btn-ifood {
+            background: #111;
+            border-color: rgba(234, 29, 44, 0.5);
+            color: #fff;
+        }
+        .btn-ifood .icon { background: rgba(234, 29, 44, 0.12); color: #EA1D2C; }
+        .btn-ifood:hover { border-color: #EA1D2C; box-shadow: 0 8px 28px rgba(234, 29, 44, 0.2); }
+
+        /* Botão Google */
+        .btn-google {
+            background: #111;
+            border-color: rgba(245, 166, 35, 0.5);
+            color: #fff;
+        }
+        .btn-google .icon { background: rgba(245, 166, 35, 0.12); color: #F5A623; }
+        .btn-google:hover { border-color: #F5A623; box-shadow: 0 8px 28px rgba(245, 166, 35, 0.2); }
+
+        /* Botão Instagram */
+        .btn-instagram {
+            background: #111;
+            border-color: rgba(225, 48, 108, 0.5);
+            color: #fff;
+        }
+        .btn-instagram .icon { background: rgba(225, 48, 108, 0.12); color: #E1306C; }
+        .btn-instagram:hover { border-color: #E1306C; box-shadow: 0 8px 28px rgba(225, 48, 108, 0.2); }
+
+        /* Botão Facebook */
+        .btn-facebook {
+            background: #111;
+            border-color: rgba(24, 119, 242, 0.5);
+            color: #fff;
+        }
+        .btn-facebook .icon { background: rgba(24, 119, 242, 0.12); color: #1877F2; }
+        .btn-facebook:hover { border-color: #1877F2; box-shadow: 0 8px 28px rgba(24, 119, 242, 0.2); }
+
+        /* ── AVALIAÇÕES ── */
+        .reviews-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .review-card {
+            background: #141414;
+            border-radius: 16px;
+            padding: 16px;
+            border-left: 3px solid #FF6B00;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B00, #CC4E00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .reviewer-info {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .review-stars {
+            color: #F5A623;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .google-badge {
+            font-size: 11px;
+            color: #555;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .review-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #BBBBBB;
+            font-style: italic;
+        }
+
+        /* ── ENDEREÇO ── */
+        .address-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #141414;
+            border-radius: 14px;
+            padding: 14px 18px;
+            width: 100%;
+            border: 1px solid #1E1E1E;
+        }
+
+        .address-card i {
+            color: #FF6B00;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .address-card span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: #333;
+            text-align: center;
+            padding-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════ HEADER ════════════════════════════════════ -->
-<header>
-  <div class="logo-area">
-    <img src="https://images.brendi.com.br/optimized/a42afcb73c3839d2267a5b315594e8ce" alt="Logo Barb's Pizzaria" style="width:72px;height:72px;border-radius:50%;border:3px solid #e07b10;object-fit:cover">
-    <div class="header-info">
-      <h1>Barb's Pizzaria</h1>
-      <div class="tagline">🍕 Campo Grande · Presidente Epitácio – SP</div>
-    </div>
-  </div>
-  <div class="info-bar">
-    <span>🕐 Seg–Qui: 18h às 23h45 &nbsp;|&nbsp; Sex/Sáb/Dom: 18h à meia-noite</span>
-    <span>📍 R. Antônio Venâncio Lopes, 14-50 · Pres. Epitácio – SP</span>
-    <span>📲 <a href="https://wa.me/5518996424659" target="_blank" style="color:#f0c040;text-decoration:none">(18) 99642-4659</a></span>
-    <span>🛵 Entrega em Pres. Epitácio</span>
-  </div>
-  <nav>
-    <button class="active" onclick="showTab('salgadas',this)">🍕 Salgadas (48)</button>
-    <button onclick="showTab('doces',this)">🍫 Doces (16)</button>
-    <button onclick="showTab('kids',this)">🎉 Mini Kids (23)</button>
-    <button onclick="showTab('combos',this)">🔥 Combos</button>
-    <button onclick="showTab('bebidas',this)">🥤 Bebidas & Adicionais</button>
-  </nav>
-</header>
+<div class="container">
 
-<main>
+    <!-- ── LOGO ── -->
+    <div class="logo-wrapper">
+        <div class="logo-ring">
+            <img src="logobarbs.png" alt="Barb's Pizzaria Logo">
+        </div>
 
-  <!-- ════════════════ PIZZAS SALGADAS ════════════════ -->
-  <section id="salgadas" class="section active">
-    <div class="section-title">🍕 Pizzas Salgadas <span class="count-badge">48 sabores</span></div>
-
-    <div class="info-box">
-      <h3>📏 Tamanhos, Fatias &amp; Preços</h3>
-      <p>
-        🟡 <strong>Pequena (Broto)</strong> — 4 fatias &nbsp;|&nbsp;
-        🟠 <strong>Média</strong> — 6 fatias &nbsp;|&nbsp;
-        🔴 <strong>Grande</strong> — 8 fatias &nbsp;|&nbsp;
-        ⭐ <strong>3 Sabores</strong> — 9 fatias · você escolhe 3 sabores · <strong>R$ 55,00</strong>
-      </p>
+        <div class="brand-name">BARB'S PIZZARIA</div>
+        <div class="brand-tagline">Presidente Epitácio &bull; SP</div>
     </div>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="🔍 Buscar por nome ou ingrediente..." oninput="filterTable()">
+    <!-- ── BADGE DE AVALIAÇÃO ── -->
+    <div class="rating-badge">
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-number">4,6</span>
+        <span class="rating-sep">•</span>
+        <span class="rating-count">307 avaliações no Google</span>
     </div>
 
-    <table class="pizza-table">
-      <thead>
-        <tr>
-          <th>Sabor &amp; Ingredientes</th>
-          <th class="c">Pequena<br><small style="font-weight:400;opacity:.8">4 fatias</small></th>
-          <th class="c">Média<br><small style="font-weight:400;opacity:.8">6 fatias</small></th>
-          <th class="c">Grande<br><small style="font-weight:400;opacity:.8">8 fatias</small></th>
-          <th class="sabores-col">3 Sabores ⭐<br><small style="font-weight:400;opacity:.8">9 fatias</small></th>
-        </tr>
-      </thead>
-      <tbody id="pizzaBody"></tbody>
-    </table>
-    <p style="font-size:.72rem;color:#bbb;margin-top:6px;text-align:right">
-      ⭐ 3 Sabores (R$55,00): pizza grande cortada em 9 fatias com 3 sabores à sua escolha. Informe os sabores no campo de observações do pedido.
-    </p>
-  </section>
+    <!--
+    ── FOTO DE DESTAQUE (pizza ou combo) ──
+    Descomente e troque "pizza-hero.jpg" pelo nome do seu arquivo.
+    Coloque a imagem em: images/pizza-hero.jpg
+    Tamanho ideal: 900x400px (paisagem)
 
-  <!-- ════════════════ PIZZAS DOCES ════════════════ -->
-  <section id="doces" class="section">
-    <div class="section-title">🍫 Pizzas Doces <span class="count-badge">16 sabores</span></div>
-    <p style="font-size:.82rem;color:#777;margin-bottom:16px">
-      Disponíveis nos tamanhos Pequena (4f), Média (6f) e Grande (8f). A opção 3 Sabores também aceita mistura de doce + salgado!
-    </p>
-    <div class="cards-grid" id="docesGrid"></div>
-    <p style="font-size:.72rem;color:#bbb;margin-top:10px">
-      * Média = Grande − R$6 &nbsp;|&nbsp; Pequena = Grande − R$8
-    </p>
-  </section>
+    <div class="hero-image">
+        <img src="images/pizza-hero.jpg" alt="Pizza Barb's Pizzaria">
+    </div>
+    -->
 
-  <!-- ════════════════ MINI KIDS ════════════════ -->
-  <section id="kids" class="section">
-    <div class="section-title">🎉 Mini Pizza Kids <span class="count-badge">23 sabores</span></div>
-    <p style="font-size:.82rem;color:#777;margin-bottom:16px">
-      Mini pizzas individuais, perfeitas para as crianças e para quem quer um docinho especial. 🍫
-    </p>
-    <div class="kids-grid" id="kidsGrid"></div>
-  </section>
+    <div class="divider"></div>
 
-  <!-- ════════════════ COMBOS ════════════════ -->
-  <section id="combos" class="section">
-    <div class="section-title">🔥 Combos Imperdíveis</div>
-    <div id="combosBox"></div>
-  </section>
+    <!-- ── BOTÕES ── -->
+    <div class="section-title">📍 acesse tudo aqui</div>
 
-  <!-- ════════════════ BEBIDAS & ADICIONAIS ════════════════ -->
-  <section id="bebidas" class="section">
-    <div class="section-title">🥤 Bebidas</div>
-    <table class="simple-table">
-      <thead><tr><th>Produto</th><th>Preço</th></tr></thead>
-      <tbody>
-        <tr><td>Funada 2L — Tubaína ou Guaraná</td><td>R$ 10,00</td></tr>
-      </tbody>
-    </table>
+    <div class="links-wrapper">
 
-    <div class="section-title">➕ Adicionais</div>
-    <table class="simple-table">
-      <thead><tr><th>Adicional</th><th>Preço</th></tr></thead>
-      <tbody>
-        <tr><td>Muçarela</td><td>R$ 5,00</td></tr>
-        <tr><td>Bacon</td><td>R$ 5,00</td></tr>
-        <tr><td>Palmito</td><td>R$ 5,00</td></tr>
-        <tr><td>Presunto</td><td>R$ 5,00</td></tr>
-        <tr><td>Calabresa</td><td>R$ 5,00</td></tr>
-        <tr><td>Milho Verde</td><td>R$ 5,00</td></tr>
-        <tr><td>Cheddar</td><td>R$ 5,00</td></tr>
-        <tr><td>Ovo Cozido</td><td>R$ 3,00</td></tr>
-        <tr><td>Ervilha</td><td>R$ 3,00</td></tr>
-        <tr><td>Requeijão / Catupiry</td><td>R$ 10,00</td></tr>
-      </tbody>
-    </table>
-  </section>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5518996424659"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-whatsapp"
+           onclick="trackClick('whatsapp')">
+            <div class="icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Chamar no WhatsApp</span>
+                <span class="btn-sublabel">Tire dúvidas ou faça seu pedido</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
 
-</main>
+        <!-- Cardápio -->
+        <a href="https://pedido.brendi.com.br/barbs-pizzaria-centro"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-cardapio"
+           onclick="trackClick('cardapio')">
+            <div class="icon"><i class="fas fa-pizza-slice"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Ver Cardápio Completo</span>
+                <span class="btn-sublabel">Pizzas, combos e muito mais 🍕</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
 
-<!-- ════════════════════════════════════ FOOTER ════════════════════════════════════ -->
-<footer>
-  <div class="delivery-badge">🛵 Entregamos dentro do perímetro de Presidente Epitácio</div>
-  <br>
-  <strong>Pedido mínimo:</strong> R$ 35,00 &nbsp;·&nbsp; <strong>Cashback:</strong> 2% nas compras pelo app Brendi
-  <div class="aviso-preco">
-    <strong>⚠️ Aviso sobre preços:</strong><br>
-    Os valores exibidos neste cardápio são válidos por <strong>30 dias a partir do recebimento</strong>.
-    Os preços contidos neste cardápio podem ser alterados a qualquer momento sem aviso prévio.
-    Em caso de dúvida, consulte-nos antes de fechar o pedido.
-  </div>
-  <strong>📍</strong> R. Antônio Venâncio Lopes, 14-50 · Campo Grande · Presidente Epitácio – SP · CEP 19470-000<br>
-  <strong>🕐</strong> Seg–Qui: 18h às 23h45 &nbsp;|&nbsp; Sex · Sáb · Dom: 18h à meia-noite<br><br>
-  <small>© Barb's Pizzaria · Presidente Epitácio – SP</small>
-</footer>
+        <!-- iFood -->
+        <a href="https://www.ifood.com.br/delivery/presidente-epitacio-sp/barbs-pizzaria--pesticos-campo-grande/d114a021-2004-4885-966a-0fdfaf8c896f"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-ifood"
+           onclick="trackClick('ifood')">
+            <div class="icon"><i class="fas fa-motorcycle"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Pedir pelo iFood</span>
+                <span class="btn-sublabel">Delivery rápido na sua porta 🛵</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
+
+        <!-- Google Reviews -->
+        <a href="https://g.page/r/Cd5HG-mOXSuIEAE/review"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-google"
+           onclick="trackClick('google_avaliacao')">
+            <div class="icon"><i class="fas fa-star"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Avaliar no Google</span>
+                <span class="btn-sublabel">Sua opinião nos ajuda muito 🙏</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/barbspizzaria/"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-instagram"
+           onclick="trackClick('instagram')">
+            <div class="icon"><i class="fab fa-instagram"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Instagram</span>
+                <span class="btn-sublabel">@barbspizzaria — siga a gente!</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/barbspizzaria/"
+           target="_blank"
+           rel="noopener"
+           class="link-btn btn-facebook"
+           onclick="trackClick('facebook')">
+            <div class="icon"><i class="fab fa-facebook-f"></i></div>
+            <div class="btn-text">
+                <span class="btn-label">Facebook</span>
+                <span class="btn-sublabel">@barbspizzaria</span>
+            </div>
+            <span class="arrow">›</span>
+        </a>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ── AVALIAÇÕES ── -->
+    <div class="section-title">⭐ o que dizem nossos clientes</div>
+
+    <div class="reviews-section">
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">T</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Thailise Prado</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge"><i class="fab fa-google"></i></div>
+            </div>
+            <div class="review-text">
+                "Excelente atendimento! A qualidade das pizzas é ótima, muito saborosas e bem preparadas. Quando ocorre algum erro, eles resolvem rapidamente e sem prejuízo para o cliente — mostrando respeito e valorização de quem compra. Recomendo! 🍕"
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">B</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Bichos da Ya</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge"><i class="fab fa-google"></i></div>
+            </div>
+            <div class="review-text">
+                "O atendimento é impecável, super educados e prestativos. O sabor da pizza é incrível, super bem feita — massa leve e saborosa. Recomendo muito!"
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">N</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Naiara Moraes</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge"><i class="fab fa-google"></i></div>
+            </div>
+            <div class="review-text">
+                "Ótimo atendimento e pizza com massa super leve. Delícia mesmo, nota 10 em tudo — massa muito boa e crocante!"
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">C</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Cliente verificado</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge">🍕</div>
+            </div>
+            <div class="review-text">
+                "Pra mim, é a melhor pizza da cidade. Ótimo preço e a qualidade é perfeita. Sem palavras."
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">C</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Cliente verificado</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge">🍕</div>
+            </div>
+            <div class="review-text">
+                "Massa levinha e crocante, molho delicioso, cobertura perfeita! Parabéns!"
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-avatar">C</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-name">Cliente verificado</div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="google-badge">🍕</div>
+            </div>
+            <div class="review-text">
+                "Nota 1000! Super quentinha — parabéns pelo capricho e carinho com os clientes 🦋"
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── ENDEREÇO ── -->
+    <div class="address-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>R. Antônio Venâncio Lopes, 1450<br>Pres. Epitácio · SP · 19470-000</span>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">Barb's Pizzaria © 2025 · feito com 🧡 em Presidente Epitácio</div>
+
+</div>
 
 <script>
-/* ══════════════ DADOS ══════════════ */
-
-const salgadas = [
-  { n:"Calabresa",            g:48, m:42, p:40, i:"Molho, Muçarela, Calabresa em rodelas, Cebola, Orégano e Azeitonas" },
-  { n:"Epitaciana",           g:52, m:46, p:44, i:"Molho, Muçarela, Palmito, Calabresa, Cebola, Provolone, Orégano e Azeitonas" },
-  { n:"Pôr do Sol",           g:52, m:46, p:44, i:"Molho, Muçarela, Frango, Milho, Cheddar, Orégano e Azeitonas" },
-  { n:"Veneza",               g:52, m:46, p:44, i:"Molho, Muçarela, Frango, Bacon, Cebola, Orégano e Azeitonas" },
-  { n:"Catu Atum",            g:55, m:49, p:47, i:"Molho, Catupiry, Atum, Cebola, Orégano e Azeitonas" },
-  { n:"Atum",                 g:54, m:48, p:46, i:"Atum, Molho, Mussarela, Cebola e Azeitonas" },
-  { n:"Bacon",                g:48, m:42, p:40, i:"Molho, Mussarela, Bacon, Orégano e Azeitonas" },
-  { n:"Baiana",               g:48, m:42, p:40, i:"Molho, Calabresa, Pimenta, Muçarela, Cebola, Ovos, Orégano e Azeitona" },
-  { n:"5 Queijos",            g:53, m:47, p:45, i:"Molho, Mussarela, Catupiry, Parmesão, Provolone, Cheddar, Orégano e Azeitonas" },
-  { n:"Do Barba",             g:52, m:46, p:44, i:"Molho, Muçarela, Calabresa picada, Creme de Leite, Bacon, Orégano e Azeitonas" },
-  { n:"Moda da Casa",         g:55, m:49, p:47, i:"Molho, Muçarela, Frango, Calabresa, Bacon, Catupiry, Orégano e Azeitonas" },
-  { n:"Brasileirinha",        g:54, m:48, p:46, i:"Molho, Mussarela, Carne de Sol, Palmito, Milho Verde e Cebola" },
-  { n:"Atum com Champignon",  g:55, m:49, p:47, i:"Atum, Molho, Mussarela, Champignon, Cebola, Orégano e Azeitonas" },
-  { n:"Frango com Milho",     g:48, m:42, p:40, i:"Molho, Muçarela, Frango, Milho, Orégano e Azeitonas" },
-  { n:"Hot Dog",              g:48, m:42, p:40, i:"Molho de Mostarda e Ketchup, Milho, Ervilha, Batata Palha e Salsicha picada" },
-  { n:"Bella Dona",           g:50, m:44, p:42, i:"Molho, Mussarela, Calabresa, Bacon, Tomate em rodelas, Cebola e Creme de Leite" },
-  { n:"Palmito",              g:48, m:42, p:40, i:"Molho, Muçarela, Palmito, Orégano e Azeitonas" },
-  { n:"Civeta",               g:50, m:44, p:42, i:"Molho, Muçarela, Calabresa, Bacon, Parmesão, Alho, Orégano e Azeitonas" },
-  { n:"Paulistinha",          g:48, m:42, p:40, i:"Molho, 2 camadas de Calabresa, Cebola, Orégano e Azeitonas" },
-  { n:"Celebridade",          g:48, m:42, p:40, i:"Molho, Tomate em cubos, Presunto em cubos, Molho Rosê, Mussarela e Orégano" },
-  { n:"Portuguesa",           g:52, m:46, p:44, i:"Molho, Muçarela, Presunto ralado, Ovo, Cebola, Ervilha, Orégano e Azeitonas" },
-  { n:"Brócolis",             g:50, m:44, p:42, i:"Molho, Muçarela, Brócolis, Bacon, Alho, Orégano e Azeitonas" },
-  { n:"Napolitana",           g:48, m:42, p:40, i:"Molho, Muçarela, Tomate picado, Parmesão, Orégano e Azeitonas" },
-  { n:"Palmito Rosê",         g:52, m:46, p:44, i:"Molho, Muçarela, Palmito, Molho Rosê e Azeitonas" },
-  { n:"Lombo Especial",       g:57, m:51, p:49, i:"Molho, Muçarela, Lombo Canadense, Palmito, Ervilha, Cebola, Orégano e Azeitonas" },
-  { n:"Marguerita",           g:48, m:42, p:40, i:"Molho, Muçarela, Manjericão, Orégano e Azeitonas" },
-  { n:"4 Queijos",            g:52, m:46, p:44, i:"Molho, Mussarela, Catupiry, Parmesão, Provolone, Orégano e Azeitonas" },
-  { n:"À Grega",              g:53, m:47, p:45, i:"Molho, Mussarela, Presunto ralado, Palmito, Ervilha, Orégano e Azeitonas" },
-  { n:"Catufrango e Milho",   g:50, m:44, p:42, i:"Molho, Frango, Milho, Catupiry, Orégano e Azeitonas" },
-  { n:"Frango com Cheddar",   g:48, m:42, p:40, i:"Molho, Frango desfiado, Cheddar, Orégano e Azeitonas" },
-  { n:"Lombo",                g:55, m:49, p:47, i:"Molho, Muçarela, Lombo defumado, Cebola, Orégano e Azeitonas" },
-  { n:"Americana",            g:53, m:47, p:45, i:"Molho, Presunto ralado, Muçarela, Calabresa, Champignon, Orégano e Azeitonas" },
-  { n:"Frango com Queijo",    g:48, m:42, p:40, i:"Molho, Frango desfiado, Mussarela, Orégano e Azeitonas" },
-  { n:"Texana",               g:55, m:49, p:47, i:"Molho, Muçarela, Bacon, Cebola, Lombo defumado, Ovos, Orégano e Azeitonas" },
-  { n:"Provolone",            g:52, m:46, p:44, i:"Molho, Mussarela, Tomate, Provolone, Orégano e Azeitonas" },
-  { n:"Estrogonofe de Frango",g:54, m:48, p:46, i:"Molho, Muçarela, Estrogonofe de Frango e Batata Palha" },
-  { n:"Presunto",             g:50, m:44, p:42, i:"Molho, Mussarela, Tomate, Presunto ralado, Orégano e Azeitonas" },
-  { n:"Estância",             g:55, m:49, p:47, i:"Molho, Muçarela, Presunto, Calabresa, Palmito, Milho, Ervilha, Cebola, Ovo e Bacon" },
-  { n:"Mussarela",            g:48, m:42, p:40, i:"Molho, Mussarela, Tomate, Orégano e Azeitonas" },
-  { n:"Vegetariana",          g:52, m:46, p:44, i:"Molho, Muçarela, Tomate, Palmito, Milho, Cebola, Orégano e Azeitonas" },
-  { n:"Ravena",               g:52, m:46, p:44, i:"Molho, Catupiry, Lombo defumado, Orégano e Azeitonas" },
-  { n:"6 Queijos",            g:54, m:48, p:46, i:"Molho, Mussarela, Catupiry, Parmesão, Provolone, Gorgonzola, Cheddar, Orégano e Azeitonas" },
-  { n:"Fratelli",             g:54, m:48, p:46, i:"Molho, Calabresa, Palmito, Cebola, Mussarela, Provolone, Bacon, Orégano e Azeitonas" },
-  { n:"Milho",                g:48, m:42, p:40, i:"Molho, Milho, Muçarela, Orégano e Azeitonas" },
-  { n:"Toscana",              g:48, m:42, p:40, i:"Molho, Muçarela, Calabresa, Orégano e Azeitonas" },
-  { n:"Catu Palha",           g:53, m:47, p:45, i:"Molho, Frango, Catupiry, Orégano, Azeitonas e Batata Palha" },
-  { n:"Pepperoni",            g:55, m:49, p:47, i:"Molho, Muçarela, Pepperoni, Cebola, Orégano e Azeitona" },
-  { n:"Calabresa com Tomate Seco", g:50, m:44, p:42, i:"Molho, Mussarela, Calabresa, Tomate Seco, Orégano e Azeitonas" }
-];
-
-const doces = [
-  { n:"Chocolate ao Leite",          g:52, i:"Chocolate ao leite cremoso" },
-  { n:"Chocolate Branco",            g:52, i:"Chocolate branco" },
-  { n:"Mesclada",                    g:54, i:"Chocolate ao leite + Chocolate branco" },
-  { n:"Brigadeiro",                  g:54, i:"Chocolate ao leite + Granulado" },
-  { n:"Charge",                      g:55, i:"Chocolate ao leite + Paçoca" },
-  { n:"Prestígio",                   g:56, i:"Chocolate ao leite + Coco ralado + Leite condensado" },
-  { n:"Ninho",                       g:60, i:"Chocolate branco + Leite Ninho" },
-  { n:"Cartola",                     g:60, i:"Mussarela + Banana em rodelas + Leite condensado + Canela" },
-  { n:"Oreo",                        g:65, i:"Chocolate branco + Bolacha Oreo picada" },
-  { n:"Chocolate ao Leite c/ Morangos", g:65, i:"Chocolate ao leite + Morangos frescos" },
-  { n:"Uva Verde c/ Choco ao Leite", g:65, i:"Uva verde + Chocolate ao leite" },
-  { n:"Sensação",                    g:70, i:"Chocolate ao leite + Morango + Leite condensado" },
-  { n:"Nutella",                     g:85, i:"Nutella cremosa" },
-  { n:"Salada de Fruta",             g:85, i:"Chocolate ao leite + Uva verde + Banana + Morango" },
-  { n:"Morango com Nutella",         g:95, i:"Morango fresco + Nutella" },
-  { n:"Uva Verde com Nutella",       g:95, i:"Uva verde + Nutella" }
-];
-
-const kids = [
-  { n:"Brigadeiro",                           p:10.00, de:13.00, d:"Chocolate ao leite cremoso com camada generosa de granulado sabor chocolate." },
-  { n:"Confete",                              p:10.99, de:13.00, d:"Chocolate cremoso ao leite com confetes crocantes e coloridos." },
-  { n:"Chocolate ao Leite",                   p:10.00, de:12.00, d:"Camada cremosa de chocolate ao leite Harald sobre massa fresquinha." },
-  { n:"Chocolate ao Leite c/ Ninho",          p:10.99, de:13.00, d:"Chocolate ao leite com fina camada de Leite Ninho polvilhado." },
-  { n:"Charge",                               p:10.00, de:13.00, d:"Chocolate ao leite com crocância da paçoca Paçoquita triturada." },
-  { n:"Chocolate Branco",                     p:10.00, de:12.00, d:"Chocolate branco cremoso." },
-  { n:"Mesclada",                             p:10.00, de:12.00, d:"Combinação de chocolate ao leite com chocolate branco." },
-  { n:"Ninho",                                p:10.00, de:15.00, d:"Creme de Leite Ninho com camada generosa de leite em pó por cima." },
-  { n:"Nutella",                              p:16.00, de:17.00, d:"Massa macia coberta com Nutella cremosa." },
-  { n:"Oreo",                                 p:11.99, de:15.00, d:"Chocolate branco + bolacha Oreo — o sabor favorito da criançada!" },
-  { n:"Romeu e Julieta",                      p:10.00, de:12.00, d:"Goiabada derretida com mussarela." },
-  { n:"Morango com Ninho",                    p:13.99, de:16.00, d:"Creme de Ninho com morangos frescos." },
-  { n:"Nutella com Morangos",                 p:15.00, de:18.00, d:"Nutella cremosa com morangos fresquinhos." },
-  { n:"Morango c/ Choco ao Leite",            p:13.00, de:14.00, d:"Morangos frescos com chocolate ao leite cremoso." },
-  { n:"Morango c/ Choco ao Leite e Granulado",p:13.99, de:16.00, d:"Chocolate ao leite crocante com morango — combinação irresistível!" },
-  { n:"Cartola (Banana com Queijo)",          p:12.00, de:14.00, d:"Mussarela derretida, fatias de banana madura, canela e leite condensado." },
-  { n:"Banana c/ Choco ao Leite e Canela",    p:11.99, de:15.00, d:"Banana doce com chocolate ao leite e toque quente de canela." },
-  { n:"Nutella com Banana",                   p:13.00, de:15.00, d:"Nutella cremosa com a doçura natural da banana." },
-  { n:"Uva com Nutella",                      p:15.00, de:17.00, d:"Creme de leite, Nutella e uvas verdes cortadas." },
-  { n:"Uva com Choco ao Leite",               p:13.00, de:15.00, d:"Creme de leite, chocolate ao leite e uvas verdes cortadas." },
-  { n:"Uva com Chocolate Branco",             p:13.00, de:15.00, d:"Creme de leite, chocolate branco e uvas verdes." },
-  { n:"Uva com Ninho",                        p:15.00, de:17.00, d:"Creme de leite, creme de Ninho, uvas verdes picadas e Ninho polvilhado." },
-  { n:"Prestígio",                            p:10.00, de:null,  d:"Chocolate ao leite com coco ralado e leite condensado." }
-];
-
-const combos = [
-  {
-    tag:"⭐ Mais Pedido", tagClass:"",
-    nome:"Combo Engordiet — Monte do Seu Jeito 🟠",
-    de:104, por:85,
-    items:[
-      "🍕 1 Pizza Grande (8 pedaços) — até 2 sabores (inteira ou meio a meio)",
-      "🍫 1 Pizza Broto Doce (4 pedaços) — Brigadeiro ou Mesclada (pode ser meio a meio)",
-      "🥤 1 Funada 2L — Tubaína ou Guaraná",
-      "🧀 Borda Grátis — Cheddar ou Catupiry (para a pizza grande)"
-    ],
-    obs:"Sabores salgados disponíveis neste combo: Calabresa · Muçarela · Napolitana · Baiana · Toscana · Frango c/ Queijo · Frango c/ Cheddar · Frango c/ Milho · Bacon · Marguerita · Hot Dog. ⚠️ Informe os sabores no campo de observações."
-  },
-  {
-    tag:"Novidade", tagClass:"",
-    nome:"Combo Engordiet Mais 🟠",
-    de:105, por:89.90,
-    items:[
-      "🍕 1 Pizza Grande (8 pedaços) — Metade Civeta + Metade Catufrango · borda tradicional",
-      "🍫 1 Pizza Broto Doce (4 pedaços) — sabor Mesclada",
-      "🥤 1 Funada 2L"
-    ],
-    obs:null
-  },
-  {
-    tag:"Novidade", tagClass:"",
-    nome:"Combo 3 Sabores — Você Escolhe ⭐",
-    de:75, por:65,
-    items:[
-      "🍕 1 Pizza Grande cortada em 9 pedaços — você escolhe até 3 sabores",
-      "✅ Pode misturar sabores salgados e doce na mesma pizza",
-      "🍫 1 Mini Kids Brigadeiro (fixa, não pode alterar)",
-      "🥤 1 Funada 2L — Tubaína, Guaraná ou Limão",
-      "🧀 Borda Grátis — Cheddar ou Catupiry"
-    ],
-    obs:"⚠️ Informe os 3 sabores salgados no campo de observações do pedido."
-  },
-  {
-    tag:"📅 Toda Quinta", tagClass:"green",
-    nome:"Combo Quinta do Calabresa 🔥",
-    de:57, por:55,
-    items:[
-      "🍕 1 Pizza Grande de Calabresa (8 pedaços) — bem recheada, com cebola fresquinha",
-      "🥤 1 Funada 2L geladinho",
-      "🧀 Borda Recheada Grátis — Cheddar ou Catupiry"
-    ],
-    obs:"⚠️ Disponível SOMENTE às quintas-feiras. Informe o sabor da borda no campo de observações."
-  },
-  {
-    tag:"🌭 Só às Sextas!", tagClass:"gold",
-    nome:"Combo Sexta do Hot Dog 🌭🍕",
-    de:67, por:54.90,
-    items:[
-      "🍕 1 Pizza Grande estilo Hot Dog (35cm · 8 pedaços)",
-      "🧀 Borda Recheada Grátis — Cheddar ou Catupiry",
-      "🥤 1 Funada 2L — Tubaína, Guaraná ou Limão",
-      "🍫 1 Mini Kids Chocolate ao Leite"
-    ],
-    obs:"⚠️ Disponível SOMENTE às sextas-feiras. Informe o sabor da borda no campo de observações."
-  }
-];
-
-/* ══════════════ RENDER ══════════════ */
-
-function fmt(v){ return v.toFixed(2).replace('.',','); }
-
-// Salgadas
-(function(){
-  const body = document.getElementById('pizzaBody');
-  body.innerHTML = salgadas.map((p,i) => `
-    <tr data-search="${p.n.toLowerCase()} ${p.i.toLowerCase()}">
-      <td>
-        <div class="pizza-name"><span class="pizza-num">${i+1}.</span>${p.n}</div>
-        <div class="pizza-ing">${p.i}</div>
-      </td>
-      <td class="c">R$&nbsp;${fmt(p.p)}</td>
-      <td class="c">R$&nbsp;${fmt(p.m)}</td>
-      <td class="c">R$&nbsp;${fmt(p.g)}</td>
-      <td class="sabores-td">R$&nbsp;55,00</td>
-    </tr>`).join('');
-})();
-
-// Doces
-(function(){
-  const grid = document.getElementById('docesGrid');
-  grid.innerHTML = doces.map(p => {
-    const m = p.g-6, pq = p.g-8;
-    return `<div class="card">
-      <div class="card-name">🍫 ${p.n}</div>
-      <div class="card-ing">${p.i}</div>
-      <div class="card-prices">
-        <div class="price-badge">R$&nbsp;${fmt(pq)}<span>Pequena (4f)</span></div>
-        <div class="price-badge">R$&nbsp;${fmt(m)}<span>Média (6f)</span></div>
-        <div class="price-badge highlight">R$&nbsp;${fmt(p.g)}<span>Grande (8f)</span></div>
-      </div>
-    </div>`;
-  }).join('');
-})();
-
-// Mini Kids
-(function(){
-  const grid = document.getElementById('kidsGrid');
-  grid.innerHTML = kids.map(k => `
-    <div class="kids-card">
-      <div class="kids-name">🍕 ${k.n}</div>
-      <div class="kids-desc">${k.d}</div>
-      <span class="kids-price">R$&nbsp;${fmt(k.p)}</span>
-      ${k.de ? `<span class="kids-de">De R$&nbsp;${fmt(k.de)}</span>` : ''}
-    </div>`).join('');
-})();
-
-// Combos
-(function(){
-  const box = document.getElementById('combosBox');
-  box.innerHTML = combos.map(c => {
-    const priceRow = c.por ? `
-      <div class="combo-price-row">
-        ${c.de ? `<span class="combo-de">De R$&nbsp;${fmt(c.de)}</span>` : ''}
-        <span class="combo-por">R$&nbsp;${fmt(c.por)}</span>
-        ${c.de ? `<span class="combo-economia">Economia R$&nbsp;${fmt(c.de-c.por)}</span>` : ''}
-      </div>` : `<p style="font-size:.84rem;color:#aaa">Consulte o valor pelo WhatsApp</p>`;
-    return `
-    <div class="combo-card">
-      <span class="combo-tag ${c.tagClass}">${c.tag}</span>
-      <div class="combo-name">${c.nome}</div>
-      <ul class="combo-items">${c.items.map(it=>`<li>${it}</li>`).join('')}</ul>
-      ${c.obs ? `<div class="combo-obs">${c.obs}</div>` : ''}
-      ${priceRow}
-    </div>`;
-  }).join('');
-})();
-
-/* ══════════════ TAB NAVIGATION ══════════════ */
-function showTab(id, btn){
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(btn) btn.classList.add('active');
-}
-
-/* ══════════════ SEARCH ══════════════ */
-function filterTable(){
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  document.querySelectorAll('#pizzaBody tr').forEach(row => {
-    row.classList.toggle('hidden', q !== '' && !row.dataset.search.includes(q));
-  });
-}
+    /**
+     * RASTREAMENTO DE CLIQUES
+     * Funciona automaticamente quando o Google Analytics estiver ativado.
+     * Cada botão registra um evento com o nome do destino.
+     * No painel do GA4, você verá em: Relatórios > Engajamento > Eventos
+     */
+    function trackClick(buttonName) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'click_link_tree', {
+                event_category: 'link_tree',
+                event_label: buttonName
+            });
+        }
+        // Remove ou comente a linha abaixo após os testes
+        console.log('[Barbs LinkTree] Clique:', buttonName);
+    }
 </script>
 
-</body>
-</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                           
